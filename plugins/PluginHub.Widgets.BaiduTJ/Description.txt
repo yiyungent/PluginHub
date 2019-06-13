@@ -1,0 +1,8 @@
+﻿Group: Widgets
+FriendlyName: BaiduTJ
+SystemName: Widgets.BaiduTJ
+Version: 1.06
+SupportedVersions: 0.1.0
+Author: yiyungent
+DisplayOrder: 1
+FileName: PluginHub.Widgets.BaiduTJ.dll
