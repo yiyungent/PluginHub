@@ -22,9 +22,16 @@ namespace AspNetMvc5Demo.Controllers
 
         #region Constructors
 
-        public WidgetController()
+        //public WidgetController()
+        //{
+        //    this._widgetService = new WidgetService(new PluginFinder(), new WidgetSettings());
+        //    //this._storeContext = storeContext;
+        //    //this._cacheManager = new PerRequestCacheManager(HttpContext);
+        //}
+
+        public WidgetController(IWidgetService widgetService)
         {
-            this._widgetService = new WidgetService(new PluginFinder(), new WidgetSettings());
+            this._widgetService = widgetService;
             //this._storeContext = storeContext;
             //this._cacheManager = new PerRequestCacheManager(HttpContext);
         }

@@ -1,4 +1,5 @@
 ﻿using AspNetMvc5Demo;
+using PluginHub.Infrastructure;
 using PluginHub.Mvc5;
 using System;
 using System.Collections.Generic;
@@ -16,8 +17,8 @@ namespace AspNetMvc5Demo
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
-            // 自己的IoC注册
-            //AutofacConfig.Initialise();
+            //initialize engine context
+            EngineContext.Initialize(false);
         }
     }
 }

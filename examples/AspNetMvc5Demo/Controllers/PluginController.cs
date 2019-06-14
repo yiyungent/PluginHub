@@ -30,12 +30,12 @@ namespace AspNetMvc5Demo.Controllers
             this._widgetSettings = new WidgetSettings();
         }
 
-        public PluginController()
-        {
-            this._pluginFinder = new PluginFinder();
-            this._webHelper = new WebHelper(HttpContext);
-            this._widgetSettings = new WidgetSettings();
-        }
+        //public PluginController()
+        //{
+        //    this._pluginFinder = new PluginFinder();
+        //    this._webHelper = new WebHelper(HttpContext);
+        //    this._widgetSettings = new WidgetSettings();
+        //}
 
         #endregion
 

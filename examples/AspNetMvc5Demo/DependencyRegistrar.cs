@@ -1,10 +1,12 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
 using PluginHub;
+using PluginHub.Domain.Cms;
 using PluginHub.Fakes;
 using PluginHub.Infrastructure;
 using PluginHub.Infrastructure.DependencyManagement;
 using PluginHub.Plugins;
+using PluginHub.Services.Cms;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -45,8 +47,17 @@ namespace PluginHub
             //web helper
             builder.RegisterType<WebHelper>().As<IWebHelper>().InstancePerLifetimeScope();
 
+            //controllers
+            builder.RegisterControllers(typeFinder.GetAssemblies().ToArray());
+
             //plugins
             builder.RegisterType<PluginFinder>().As<IPluginFinder>().InstancePerLifetimeScope();
+
+            // services
+            builder.RegisterType<WidgetService>().As<IWidgetService>().InstancePerLifetimeScope();
+
+            builder.RegisterType<WidgetSettings>().As<WidgetSettings>().InstancePerLifetimeScope();
+          
 
         }
 
