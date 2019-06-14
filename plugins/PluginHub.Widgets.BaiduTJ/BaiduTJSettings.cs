@@ -1,9 +1,9 @@
 ﻿
 using PluginHub.Configuration;
 
-namespace AspNetMvc5Demo.Widgets.BaiduTJ
+namespace PluginHub.Widgets.BaiduTJ
 {
-    public class NivoSliderSettings : ISettings
+    public class BaiduTJSettings : ISettings
     {
        
 

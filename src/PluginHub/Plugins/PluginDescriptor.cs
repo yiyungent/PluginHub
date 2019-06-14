@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PluginHub.Infrastructure;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
@@ -89,13 +90,24 @@ namespace PluginHub.Plugins
 
         public virtual T Instance<T>() where T : class, IPlugin
         {
+            //object instance;
+            ////if (!EngineContext.Current.ContainerManager.TryResolve(PluginType, null, out instance))
+            ////{
+            ////    //not resolved
+            ////    instance = EngineContext.Current.ContainerManager.ResolveUnregistered(PluginType);
+            ////}
+            //instance = (IPlugin)Activator.CreateInstance(this.PluginType);
+            //var typedInstance = instance as T;
+            //if (typedInstance != null)
+            //    typedInstance.PluginDescriptor = this;
+            //return typedInstance;
+
             object instance;
-            //if (!EngineContext.Current.ContainerManager.TryResolve(PluginType, null, out instance))
-            //{
-            //    //not resolved
-            //    instance = EngineContext.Current.ContainerManager.ResolveUnregistered(PluginType);
-            //}
-            instance = (IPlugin)Activator.CreateInstance(this.PluginType);
+            if (!EngineContext.Current.ContainerManager.TryResolve(PluginType, null, out instance))
+            {
+                //not resolved
+                instance = EngineContext.Current.ContainerManager.ResolveUnregistered(PluginType);
+            }
             var typedInstance = instance as T;
             if (typedInstance != null)
                 typedInstance.PluginDescriptor = this;

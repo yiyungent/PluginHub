@@ -5,7 +5,7 @@ using PluginHub;
 using PluginHub.Plugins;
 using PluginHub.Services.Cms;
 
-namespace LightPlugin.Widgets.NivoSlider
+namespace PluginHub.Widgets.BaiduTJ
 {
     /// <summary>
     /// PLugin

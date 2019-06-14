@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace AspNetMvc5Demo.Widgets.BaiduTJ.Controllers
+namespace PluginHub.Widgets.BaiduTJ.Controllers
 {
     public class WidgetsBaiduTJController : Controller
     {
