@@ -80,27 +80,6 @@ namespace PluginHub.Plugins
         #region Methods
 
         /// <summary>
-        /// Check whether the plugin is available in a certain store
-        /// </summary>
-        /// <param name="pluginDescriptor">Plugin descriptor to check</param>
-        /// <param name="storeId">Store identifier to check</param>
-        /// <returns>true - available; false - no</returns>
-        public virtual bool AuthenticateStore(PluginDescriptor pluginDescriptor, int storeId)
-        {
-            if (pluginDescriptor == null)
-                throw new ArgumentNullException("pluginDescriptor");
-
-            //no validation required
-            if (storeId == 0)
-                return true;
-
-            if (pluginDescriptor.LimitedToStores.Count == 0)
-                return true;
-
-            return pluginDescriptor.LimitedToStores.Contains(storeId);
-        }
-
-        /// <summary>
         /// Gets plugin groups
         /// </summary>
         /// <returns>Plugins groups</returns>

@@ -42,7 +42,7 @@ namespace PluginHub.Widgets.BaiduTJ
         {
             actionName = "Configure";
             controllerName = "WidgetsBaiduTJ";
-            routeValues = new RouteValueDictionary { { "Namespaces", "PluginHub.Widgets.BaiduTJ.Controllers" }, { "area", null } };
+            routeValues = new RouteValueDictionary { { "Namespaces", "PluginHub.Widgets.BaiduTJ.Controllers" }, { "area", "BaiduTJ" } };
         }
 
         /// <summary>
@@ -69,6 +69,9 @@ namespace PluginHub.Widgets.BaiduTJ
         /// </summary>
         public override void Install()
         {
+            BaiduTJSettings baiduTJSettings = new BaiduTJSettings();
+            baiduTJSettings.TJCode = "Ä¬ÈÏ´úÂë";
+            _settingService.SaveSetting<BaiduTJSettings>(baiduTJSettings);
 
             base.Install();
         }

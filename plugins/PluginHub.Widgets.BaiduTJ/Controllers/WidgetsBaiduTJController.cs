@@ -20,10 +20,14 @@ namespace PluginHub.Widgets.BaiduTJ.Controllers
         [ChildActionOnly]
         public ActionResult PublicInfo(string widgetZone, object additionalData = null)
         {
+            BaiduTJSettings baiduTJSettings = _settingService.LoadSetting<BaiduTJSettings>();
+            ViewBag.TJCode = baiduTJSettings.TJCode;
+
             return View("~/Plugins/Widgets.BaiduTJ/Views/WidgetsBaiduTJ/PublicInfo.cshtml");
         }
 
-        [ChildActionOnly]
+        [HttpGet]
+        //[ChildActionOnly]
         public ActionResult Configure()
         {
             BaiduTJSettings baiduTJSettings = _settingService.LoadSetting<BaiduTJSettings>();

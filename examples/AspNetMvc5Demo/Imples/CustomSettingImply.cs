@@ -59,6 +59,10 @@ namespace AspNetMvc5Demo.Imples
             string pluginTableName = typeof(T).Name;
             // 简化--直接使用 txt 文件模拟数据库表
             string filePath = HttpContext.Current.Server.MapPath("~/Tables/" + pluginTableName + ".txt");
+            if (!File.Exists(filePath))
+            {
+                File.Create(filePath).Dispose();
+            }
             string[] contents = File.ReadAllLines(filePath);
             Dictionary<string, string> keyValuePairs = new Dictionary<string, string>();
             foreach (var line in contents)
@@ -89,9 +93,9 @@ namespace AspNetMvc5Demo.Imples
             PropertyInfo[] propertyInfos = typeof(T).GetProperties();
             foreach (var property in propertyInfos)
             {
-                contents.Add(property.GetValue(settings).ToString());
+                contents.Add(property.Name + ":" + property.GetValue(settings).ToString());
             }
-            File.AppendAllLines(filePath, contents, System.Text.Encoding.UTF8);
+            File.WriteAllLines(filePath, contents, System.Text.Encoding.UTF8);
         }
 
         public void SetSetting<T>(string key, T value)
