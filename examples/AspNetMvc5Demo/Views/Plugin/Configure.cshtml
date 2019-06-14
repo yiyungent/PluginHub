@@ -1,0 +1,26 @@
+﻿@using AspNetMvc5Demo.Models.PluginVM
+@model ConfigureViewModel
+@{
+	Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta name="viewport" content="width=device-width" />
+	<title>@Model.FriendlyName - @Model.SystemName - 配置</title>
+</head>
+<body>
+	<div>
+		@if (Model != null && !String.IsNullOrEmpty(Model.ConfigurationActionName))
+		{
+			@Html.Action(Model.ConfigurationActionName, Model.ConfigurationControllerName, Model.ConfigurationRouteValues);
+		}
+		else
+		{
+			<strong>此插件无配置页</strong>
+		}
+	</div>
+</body>
+</html>

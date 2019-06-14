@@ -1,0 +1,24 @@
+﻿@using PluginHub.Widgets.BaiduTJ.Models
+@model ConfigurationViewModel
+@{
+	Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta name="viewport" content="width=device-width" />
+	<title>配置</title>
+</head>
+<body>
+	@using (Html.BeginForm("Configure"))
+	{
+		Html.ValidationSummary();
+		<div>
+			@Html.TextBoxFor(m => m.TJCode)
+		</div>
+		<input type="submit" value="保存" />
+	}
+</body>
+</html>

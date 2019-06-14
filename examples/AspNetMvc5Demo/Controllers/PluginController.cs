@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 
 namespace AspNetMvc5Demo.Controllers
 {
@@ -117,6 +118,38 @@ namespace AspNetMvc5Demo.Controllers
             _webHelper.RestartAppDomain();
             return RedirectToAction("Index");
         }
+
+        #region 配置
+        [HttpGet]
+        public ActionResult Configure(string systemName)
+        {
+            var pluginDescriptor = _pluginFinder.GetPluginDescriptorBySystemName(systemName, LoadPluginsMode.All);
+
+            ConfigureViewModel viewModel = new ConfigureViewModel();
+            viewModel.FriendlyName = pluginDescriptor.FriendlyName;
+            viewModel.SystemName = pluginDescriptor.SystemName;
+
+            #region 是否具有配置页
+            string actionName = null, controllerName = null;
+            RouteValueDictionary routeValues = null;
+            if (pluginDescriptor.Instance() is IWidgetPlugin)
+            {
+                var widgetPlugin = pluginDescriptor.Instance<IWidgetPlugin>();
+                widgetPlugin.GetConfigurationRoute(out actionName, out controllerName, out routeValues);
+            }
+            else
+            {
+                viewModel = null;
+                return View(viewModel);
+            }
+            viewModel.ConfigurationActionName = actionName;
+            viewModel.ConfigurationControllerName = controllerName;
+            viewModel.ConfigurationRouteValues = routeValues; 
+            #endregion
+
+            return View(viewModel);
+        }
+        #endregion
 
         #endregion
     }
