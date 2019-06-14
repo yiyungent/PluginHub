@@ -120,6 +120,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Imples\CustomSettingImply.cs" />
     <Compile Include="Models\Cms\RenderWidgetModel.cs" />
     <Compile Include="Models\Cms\WidgetModel.cs" />
     <Compile Include="Models\PluginVM\PluginListViewModel.cs" />

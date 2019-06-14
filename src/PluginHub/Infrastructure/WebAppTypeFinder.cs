@@ -22,7 +22,7 @@ namespace PluginHub.Infrastructure
 
         #region Ctor
 
-        public WebAppTypeFinder(NopConfig config)
+        public WebAppTypeFinder(PluginHubConfig config)
         {
             this._ensureBinFolderAssembliesLoaded = config.DynamicDiscovery;
         }

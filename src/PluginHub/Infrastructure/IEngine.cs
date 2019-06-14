@@ -21,7 +21,7 @@ namespace PluginHub.Infrastructure
         /// Initialize components and plugins in the nop environment.
         /// </summary>
         /// <param name="config">Config</param>
-        void Initialize(NopConfig config);
+        void Initialize(PluginHubConfig config);
 
         /// <summary>
         /// Resolve dependency

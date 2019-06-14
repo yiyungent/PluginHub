@@ -12,7 +12,7 @@ namespace PluginHub.Infrastructure
     /// <summary>
     /// Engine
     /// </summary>
-    public class NopEngine : IEngine
+    public class PluginHubEngine : IEngine
     {
         #region Fields
 
@@ -42,7 +42,7 @@ namespace PluginHub.Infrastructure
         /// Register dependencies
         /// </summary>
         /// <param name="config">Config</param>
-        protected virtual void RegisterDependencies(NopConfig config)
+        protected virtual void RegisterDependencies(PluginHubConfig config)
         {
             var builder = new ContainerBuilder();
             var container = builder.Build();
@@ -54,7 +54,7 @@ namespace PluginHub.Infrastructure
             //dependencies
             var typeFinder = new WebAppTypeFinder(config);
             builder = new ContainerBuilder();
-            builder.RegisterInstance(config).As<NopConfig>().SingleInstance();
+            builder.RegisterInstance(config).As<PluginHubConfig>().SingleInstance();
             builder.RegisterInstance(this).As<IEngine>().SingleInstance();
             builder.RegisterInstance(typeFinder).As<ITypeFinder>().SingleInstance();
             builder.Update(container);
@@ -86,7 +86,7 @@ namespace PluginHub.Infrastructure
         /// Initialize components and plugins in the nop environment.
         /// </summary>
         /// <param name="config">Config</param>
-        public void Initialize(NopConfig config)
+        public void Initialize(PluginHubConfig config)
         {
             //register dependencies
             RegisterDependencies(config);

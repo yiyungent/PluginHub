@@ -8,7 +8,7 @@ namespace PluginHub.Configuration
     /// <summary>
     /// Represents a NopConfig
     /// </summary>
-    public partial class NopConfig : IConfigurationSectionHandler
+    public partial class PluginHubConfig : IConfigurationSectionHandler
     {
         /// <summary>
         /// Creates a configuration section handler.
@@ -19,7 +19,7 @@ namespace PluginHub.Configuration
         /// <returns>The created section handler object.</returns>
         public object Create(object parent, object configContext, XmlNode section)
         {
-            var config = new NopConfig();
+            var config = new PluginHubConfig();
             var dynamicDiscoveryNode = section.SelectSingleNode("DynamicDiscovery");
             if (dynamicDiscoveryNode != null && dynamicDiscoveryNode.Attributes != null)
             {
@@ -44,22 +44,6 @@ namespace PluginHub.Configuration
                     config.IgnoreStartupTasks = Convert.ToBoolean(attribute.Value);
             }
 
-            var themeNode = section.SelectSingleNode("Themes");
-            if (themeNode != null && themeNode.Attributes != null)
-            {
-                var attribute = themeNode.Attributes["basePath"];
-                if (attribute != null)
-                    config.ThemeBasePath = attribute.Value;
-            }
-
-            var userAgentStringsNode = section.SelectSingleNode("UserAgentStrings");
-            if (userAgentStringsNode != null && userAgentStringsNode.Attributes != null)
-            {
-                var attribute = userAgentStringsNode.Attributes["databasePath"];
-                if (attribute != null)
-                    config.UserAgentStringsPath = attribute.Value;
-            }
-
             return config;
         }
         
@@ -74,18 +58,8 @@ namespace PluginHub.Configuration
         public string EngineType { get; private set; }
 
         /// <summary>
-        /// Specifices where the themes will be stored (~/Themes/)
-        /// </summary>
-        public string ThemeBasePath { get; private set; }
-
-        /// <summary>
         /// Indicates whether we should ignore startup tasks
         /// </summary>
         public bool IgnoreStartupTasks { get; private set; }
-
-        /// <summary>
-        /// Path to database with user agent strings
-        /// </summary>
-        public string UserAgentStringsPath { get; private set; }
     }
 }

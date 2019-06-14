@@ -4,6 +4,7 @@ using System.Web.Routing;
 using PluginHub;
 using PluginHub.Plugins;
 using PluginHub.Services.Cms;
+using PluginHub.Services.Configuration;
 
 namespace PluginHub.Widgets.BaiduTJ
 {
@@ -12,14 +13,13 @@ namespace PluginHub.Widgets.BaiduTJ
     /// </summary>
     public class BaiduTJPlugin : BasePlugin, IWidgetPlugin
     {
-        //private readonly ISettingService _settingService;
+        private readonly ISettingService _settingService;
         private readonly IWebHelper _webHelper;
 
-        public BaiduTJPlugin(
+        public BaiduTJPlugin(ISettingService settingService,
              IWebHelper webHelper)
         {
-            //this._pictureService = pictureService;
-            //this._settingService = settingService;
+            this._settingService = settingService;
             this._webHelper = webHelper;
         }
 

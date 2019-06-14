@@ -1,4 +1,5 @@
-﻿using Autofac;
+﻿using AspNetMvc5Demo.Imples;
+using Autofac;
 using Autofac.Integration.Mvc;
 using PluginHub;
 using PluginHub.Domain.Cms;
@@ -7,6 +8,7 @@ using PluginHub.Infrastructure;
 using PluginHub.Infrastructure.DependencyManagement;
 using PluginHub.Plugins;
 using PluginHub.Services.Cms;
+using PluginHub.Services.Configuration;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -57,7 +59,11 @@ namespace PluginHub
             builder.RegisterType<WidgetService>().As<IWidgetService>().InstancePerLifetimeScope();
 
             builder.RegisterType<WidgetSettings>().As<WidgetSettings>().InstancePerLifetimeScope();
-          
+
+
+            // custom services imply
+            builder.RegisterType<CustomSettingImply>().As<ISettingService>().InstancePerLifetimeScope();
+
 
         }
 

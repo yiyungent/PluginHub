@@ -17,7 +17,7 @@ namespace PluginHub.Infrastructure
         /// </summary>
         /// <param name="config">Config</param>
         /// <returns>New engine instance</returns>
-        protected static IEngine CreateEngineInstance(NopConfig config)
+        protected static IEngine CreateEngineInstance(PluginHubConfig config)
         {
             if (config != null && !string.IsNullOrEmpty(config.EngineType))
             {
@@ -29,7 +29,7 @@ namespace PluginHub.Infrastructure
                 return Activator.CreateInstance(engineType) as IEngine;
             }
 
-            return new NopEngine();
+            return new PluginHubEngine();
         }
 
         #endregion
@@ -45,7 +45,7 @@ namespace PluginHub.Infrastructure
         {
             if (Singleton<IEngine>.Instance == null || forceRecreate)
             {
-                var config = ConfigurationManager.GetSection("NopConfig") as NopConfig;
+                var config = ConfigurationManager.GetSection("NopConfig") as PluginHubConfig;
                 Singleton<IEngine>.Instance = CreateEngineInstance(config);
                 Singleton<IEngine>.Instance.Initialize(config);
             }
