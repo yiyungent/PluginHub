@@ -5,7 +5,7 @@ using System.Security.Principal;
 using System.Web;
 using System.Web.SessionState;
 
-namespace AspNetMvc5Demo.Fakes
+namespace PluginHub.Fakes
 {
     public class FakeHttpContext : HttpContextBase
     {

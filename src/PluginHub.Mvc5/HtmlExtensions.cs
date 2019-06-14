@@ -8,9 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
 using System.Web.WebPages;
-using AspNetMvc5Demo;
 
-namespace AspNetMvc5Demo.Mvc5
+namespace PluginHub.Mvc5
 {
     public static class HtmlExtensions
     {

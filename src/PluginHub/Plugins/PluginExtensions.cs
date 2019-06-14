@@ -1,7 +1,7 @@
 using System;
 using System.IO;
 
-namespace AspNetMvc5Demo.Plugins
+namespace PluginHub.Plugins
 {
     public static class PluginExtensions
     {

@@ -1,6 +1,6 @@
 using System.Web;
 
-namespace AspNetMvc5Demo
+namespace PluginHub
 {
     /// <summary>
     /// Represents a common helper

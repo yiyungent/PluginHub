@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Security.Principal;
 
-namespace AspNetMvc5Demo.Fakes
+namespace PluginHub.Fakes
 {
     public class FakeIdentity : IIdentity
     {

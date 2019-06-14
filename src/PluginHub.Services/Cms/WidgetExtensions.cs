@@ -1,7 +1,7 @@
 using System;
-using AspNetMvc5Demo.Domain.Cms;
+using PluginHub.Domain.Cms;
 
-namespace AspNetMvc5Demo.Services.Cms
+namespace PluginHub.Services.Cms
 {
     public static class WidgetExtensions
     {

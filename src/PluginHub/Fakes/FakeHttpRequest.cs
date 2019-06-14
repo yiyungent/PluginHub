@@ -3,7 +3,7 @@ using System.Collections.Specialized;
 using System.Web;
 using System.Web.Mvc;
 
-namespace AspNetMvc5Demo.Fakes
+namespace PluginHub.Fakes
 {
     public class FakeHttpRequest : HttpRequestBase
     {

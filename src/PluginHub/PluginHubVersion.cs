@@ -1,5 +1,5 @@
 ﻿
-namespace AspNetMvc5Demo
+namespace PluginHub
 {
     public static class PluginHubVersion
     {

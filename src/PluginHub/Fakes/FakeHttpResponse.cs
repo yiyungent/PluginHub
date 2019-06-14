@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using System.Web;
 
-namespace AspNetMvc5Demo.Fakes
+namespace PluginHub.Fakes
 {
     public class FakeHttpResponse : HttpResponseBase
     {

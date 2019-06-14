@@ -1,5 +1,5 @@
 ﻿
-namespace AspNetMvc5Demo.Configuration
+namespace PluginHub.Configuration
 {
     public interface ISettings
     {

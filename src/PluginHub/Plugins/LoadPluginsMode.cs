@@ -1,4 +1,4 @@
-namespace AspNetMvc5Demo.Plugins
+namespace PluginHub.Plugins
 {
     /// <summary>
     /// Represents a mode to load plugins

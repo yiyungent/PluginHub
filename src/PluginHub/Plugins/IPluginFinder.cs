@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace AspNetMvc5Demo.Plugins
+namespace PluginHub.Plugins
 {
     /// <summary>
     /// Plugin finder

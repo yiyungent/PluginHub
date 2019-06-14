@@ -8,9 +8,9 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Web;
-using AspNetMvc5Demo.ComponentModel;
+using PluginHub.ComponentModel;
 
-namespace AspNetMvc5Demo
+namespace PluginHub
 {
     /// <summary>
     /// Represents a common helper

@@ -1,8 +1,10 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
-using AspNetMvc5Demo;
-using AspNetMvc5Demo.Fakes;
-using AspNetMvc5Demo.Plugins;
+using PluginHub;
+using PluginHub.Fakes;
+using PluginHub.Infrastructure;
+using PluginHub.Infrastructure.DependencyManagement;
+using PluginHub.Plugins;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,27 +15,12 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
-namespace AspNetMvc5Demo
+namespace PluginHub
 {
-    public class DependencyRegistrar
+    public class DependencyRegistrar : IDependencyRegistrar
     {
-        /// <summary>
-        /// 初始化
-        /// </summary>
-        public static void Initialise()
+        public virtual void Register(ContainerBuilder builder, ITypeFinder typeFinder)
         {
-            var builder = RegisterService();
-            DependencyResolver.SetResolver(new AutofacDependencyResolver(builder.Build()));
-        }
-
-        /// <summary>
-        /// 注入实现
-        /// </summary>
-        /// <returns></returns>
-        private static ContainerBuilder RegisterService()
-        {
-            var builder = new ContainerBuilder();
-
             //HTTP context and other related stuff
             builder.Register(c =>
                 //register FakeHttpContext when HttpContext is not available
@@ -61,9 +48,11 @@ namespace AspNetMvc5Demo
             //plugins
             builder.RegisterType<PluginFinder>().As<IPluginFinder>().InstancePerLifetimeScope();
 
+        }
 
-
-            return builder;
+        public int Order
+        {
+            get { return 0; }
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using Autofac;
-using LightPlugin.Core.Infrastructure;
+using PluginHub.Infrastructure;
 
 namespace PluginHub.Infrastructure.DependencyManagement
 {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace AspNetMvc5Demo.Plugins
+namespace PluginHub.Plugins
 {
     /// <summary>
     /// Plugin finder

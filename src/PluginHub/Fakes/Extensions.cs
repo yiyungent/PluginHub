@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web;
 
-namespace AspNetMvc5Demo.Fakes
+namespace PluginHub.Fakes
 {
     public static class Extensions
     {

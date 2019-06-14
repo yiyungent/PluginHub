@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Security.Principal;
 
-namespace AspNetMvc5Demo.Fakes
+namespace PluginHub.Fakes
 {
     public class FakePrincipal : IPrincipal
     {

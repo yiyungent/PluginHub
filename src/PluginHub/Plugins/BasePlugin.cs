@@ -1,4 +1,4 @@
-﻿namespace AspNetMvc5Demo.Plugins
+﻿namespace PluginHub.Plugins
 {
     public abstract class BasePlugin : IPlugin
     {

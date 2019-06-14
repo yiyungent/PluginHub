@@ -9,14 +9,14 @@ using System.Threading;
 using System.Web;
 using System.Web.Compilation;
 using System.Web.Hosting;
-using AspNetMvc5Demo.ComponentModel;
-using AspNetMvc5Demo.Plugins;
+using PluginHub.ComponentModel;
+using PluginHub.Plugins;
 
 //Contributor: Umbraco (http://www.umbraco.com). Thanks a lot! 
 //SEE THIS POST for full details of what this does - http://shazwazza.com/post/Developing-a-plugin-framework-in-ASPNET-with-medium-trust.aspx
 
 [assembly: PreApplicationStartMethod(typeof(PluginManager), "Initialize")]
-namespace AspNetMvc5Demo.Plugins
+namespace PluginHub.Plugins
 {
     /// <summary>
     /// Sets the application up for the plugin referencing

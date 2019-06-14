@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using AspNetMvc5Demo.Configuration;
+using PluginHub.Configuration;
 
-namespace AspNetMvc5Demo.Domain.Cms
+namespace PluginHub.Domain.Cms
 {
     public class WidgetSettings : ISettings
     {

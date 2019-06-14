@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Web.Routing;
-using AspNetMvc5Demo.Plugins;
+using PluginHub.Plugins;
 
-namespace AspNetMvc5Demo.Services.Cms
+namespace PluginHub.Services.Cms
 {
     /// <summary>
     /// Provides an interface for creating tax providers

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace AspNetMvc5Demo.Services.Cms
+namespace PluginHub.Services.Cms
 {
     /// <summary>
     /// Widget service interface

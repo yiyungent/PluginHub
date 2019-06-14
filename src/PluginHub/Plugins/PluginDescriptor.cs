@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 
-namespace AspNetMvc5Demo.Plugins
+namespace PluginHub.Plugins
 {
     public class PluginDescriptor : IComparable<PluginDescriptor>
     {

@@ -1,4 +1,4 @@
-﻿namespace AspNetMvc5Demo.Plugins
+﻿namespace PluginHub.Plugins
 {
     /// <summary>
     /// Interface denoting plug-in attributes that are displayed throughout 

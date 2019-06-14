@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 
-namespace AspNetMvc5Demo.ComponentModel
+namespace PluginHub.ComponentModel
 {
     public class GenericListTypeConverter<T> : TypeConverter
     {

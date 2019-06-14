@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading;
 
-namespace AspNetMvc5Demo.ComponentModel
+namespace PluginHub.ComponentModel
 {
     /// <summary>
     /// Provides a convenience methodology for implementing locked access to resources. 

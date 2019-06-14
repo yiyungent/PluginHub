@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace AspNetMvc5Demo.Plugins
+namespace PluginHub.Plugins
 {
     /// <summary>
     /// Plugin files parser

@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using AspNetMvc5Demo.Domain.Cms;
-using AspNetMvc5Demo.Plugins;
+using PluginHub.Domain.Cms;
+using PluginHub.Plugins;
 
-namespace AspNetMvc5Demo.Services.Cms
+namespace PluginHub.Services.Cms
 {
     /// <summary>
     /// Widget service

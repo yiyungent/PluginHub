@@ -7,7 +7,7 @@ using System.Text;
 using System.Web;
 using System.Web.Hosting;
 
-namespace AspNetMvc5Demo
+namespace PluginHub
 {
     /// <summary>
     /// Represents a common helper
