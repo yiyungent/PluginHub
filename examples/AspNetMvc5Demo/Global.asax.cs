@@ -15,6 +15,9 @@ namespace AspNetMvc5Demo
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+            // 自己的IoC注册
+            //AutofacConfig.Initialise();
         }
     }
 }

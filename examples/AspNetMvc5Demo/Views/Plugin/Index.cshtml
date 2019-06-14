@@ -1,0 +1,74 @@
+﻿@using AspNetMvc5Demo.Models.PluginVM
+@model PluginListViewModel
+@{
+	Layout = null;
+}
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<script>
+
+</script>
+
+
+<!-- start 切换页头 -->
+<div class="row" style="padding-bottom: 24px;">
+	<div class="col-md-12">
+		<div class="pull-left">
+
+		</div>
+		<div class="pull-right col-md-4">
+			<div class="btn-group">
+				<a class="btn btn-primary" href="@Url.Action("UploadPlugin")">上传本地插件</a>
+				<a class="btn btn-default" href="@Url.Action("ReloadList")">重新加载插件</a>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- end 切换页头 -->
+<!-- start 列表 -->
+<div class="row" pview="list">
+	<div class="col-xs-12">
+		<ul class="media-list">
+			@foreach (var item in Model.List)
+			{
+				<li class="media">
+					<div class="media-left">
+						<a href="#">
+							<img class="media-object" src="/Plugins/@item.SystemName/logo.jpg" alt="@item.FriendlyName">
+						</a>
+					</div>
+					<div class="media-body">
+						<h4 class="media-heading">@item.FriendlyName</h4>
+						<p>
+							<span>插件系统名称: </span><span>@item.SystemName</span>
+							<span>版本: </span><span class="label label-info">@item.Version</span>
+							<span>支持版本: </span>
+							@foreach (var version in item.SupportedVersions)
+							{
+								<span class="label label-success">@version</span>
+							}
+						</p>
+						<p id="js-btn-group-@item.SystemName" class="btn-group">
+							@if (item.Installed)
+							{
+								<a class="btn btn-danger" href="@Url.Content("~/Plugin/Uninstall/")?systemName=@item.SystemName">卸载</a>
+							}
+							else
+							{
+								<a class="btn btn-primary" href="@Url.Content("~/Plugin/Install/")?systemName=@item.SystemName">安装</a>
+							}
+						</p>
+					</div>
+				</li>
+			}
+		</ul>
+	</div>
+	<!-- start 分页 -->
+	<div id="js-page" class="col-xs-12">
+		<ul class="pagination pull-right">
+			@*@Html.PageLinks(Model.PageInfo, i => Url.Action("Index", new { pageIndex = i, q = Request["q"], type = Request["type"] }))*@
+		</ul>
+	</div>
+	<!-- end 分页 -->
+	<div class=""></div>
+</div>
+<!-- end 列表 -->
