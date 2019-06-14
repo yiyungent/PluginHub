@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using System.Web.Routing;
-using AspNetMvc5Demo;
-using AspNetMvc5Demo.Services.Cms;
+using PluginHub;
+using PluginHub.Services.Cms;
 
 using AspNetMvc5Demo.Models.Cms;
-using AspNetMvc5Demo.Domain.Cms;
-using AspNetMvc5Demo.Plugins;
+using PluginHub.Domain.Cms;
+using PluginHub.Plugins;
 
 namespace AspNetMvc5Demo.Controllers
 {

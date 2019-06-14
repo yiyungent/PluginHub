@@ -1,8 +1,8 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
-using AspNetMvc5Demo;
-using AspNetMvc5Demo.Fakes;
-using AspNetMvc5Demo.Plugins;
+using PluginHub;
+using PluginHub.Fakes;
+using PluginHub.Plugins;
 using System;
 using System.Collections.Generic;
 using System.IO;

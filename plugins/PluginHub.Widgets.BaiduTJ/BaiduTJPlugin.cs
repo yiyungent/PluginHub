@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Web.Routing;
-using AspNetMvc5Demo;
-using AspNetMvc5Demo.Plugins;
-using AspNetMvc5Demo.Services.Cms;
+using PluginHub;
+using PluginHub.Plugins;
+using PluginHub.Services.Cms;
 
 namespace LightPlugin.Widgets.NivoSlider
 {

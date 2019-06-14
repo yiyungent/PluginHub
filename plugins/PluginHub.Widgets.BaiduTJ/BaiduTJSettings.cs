@@ -1,5 +1,5 @@
 ﻿
-using AspNetMvc5Demo.Configuration;
+using PluginHub.Configuration;
 
 namespace AspNetMvc5Demo.Widgets.BaiduTJ
 {
