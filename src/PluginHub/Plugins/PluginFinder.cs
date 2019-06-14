@@ -58,35 +58,9 @@ namespace PluginHub.Plugins
             }
         }
 
-        /// <summary>
-        /// Check whether the plugin is in a certain group
-        /// </summary>
-        /// <param name="pluginDescriptor">Plugin descriptor to check</param>
-        /// <param name="group">Group</param>
-        /// <returns>true - available; false - no</returns>
-        protected virtual bool CheckGroup(PluginDescriptor pluginDescriptor, string group)
-        {
-            if (pluginDescriptor == null)
-                throw new ArgumentNullException("pluginDescriptor");
-
-            if (String.IsNullOrEmpty(group))
-                return true;
-
-            return group.Equals(pluginDescriptor.Group, StringComparison.InvariantCultureIgnoreCase);
-        }
-
         #endregion
 
         #region Methods
-
-        /// <summary>
-        /// Gets plugin groups
-        /// </summary>
-        /// <returns>Plugins groups</returns>
-        public virtual IEnumerable<string> GetPluginGroups()
-        {
-            return GetPluginDescriptors(LoadPluginsMode.All).Select(x => x.Group).Distinct().OrderBy(x => x);
-        }
 
         /// <summary>
         /// Gets plugins

@@ -1,1 +1,2 @@
 Widgets.BaiduTJ
+BaiduTJ

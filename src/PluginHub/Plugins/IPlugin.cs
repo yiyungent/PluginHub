@@ -20,5 +20,9 @@
         /// Uninstall plugin
         /// </summary>
         void Uninstall();
+
+        void Open();
+
+        void Close();
     }
 }

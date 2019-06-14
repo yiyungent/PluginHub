@@ -9,17 +9,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{DB
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{3DC84064-F38B-4DC3-8D77-1E63B1729D23}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluginHub", "src\PluginHub\PluginHub.csproj", "{E4F8A6DD-8FB0-45A5-A921-A6A1C5B667F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PluginHub", "src\PluginHub\PluginHub.csproj", "{E4F8A6DD-8FB0-45A5-A921-A6A1C5B667F9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluginHub.Mvc5", "src\PluginHub.Mvc5\PluginHub.Mvc5.csproj", "{C7624908-0861-428D-AA0D-3468D8CA4AC8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluginHub.Services", "src\PluginHub.Services\PluginHub.Services.csproj", "{747166FC-5860-428B-82C7-AAA6878548C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PluginHub.Services", "src\PluginHub.Services\PluginHub.Services.csproj", "{747166FC-5860-428B-82C7-AAA6878548C0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetMvc5Demo", "examples\AspNetMvc5Demo\AspNetMvc5Demo.csproj", "{831B90C2-23AA-4769-AED9-91DC41890E4B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "plugins", "plugins", "{44076951-6E80-405A-A4F5-E01AC5557B5C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluginHub.Widgets.BaiduTJ", "plugins\PluginHub.Widgets.BaiduTJ\PluginHub.Widgets.BaiduTJ.csproj", "{AF439F8A-ABA1-4B65-BCE0-C076CA4D75E4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaiduTJ", "plugins\BaiduTJ\BaiduTJ.csproj", "{AF439F8A-ABA1-4B65-BCE0-C076CA4D75E4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

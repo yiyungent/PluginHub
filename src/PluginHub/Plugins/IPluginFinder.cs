@@ -8,12 +8,6 @@ namespace PluginHub.Plugins
     public interface IPluginFinder
     {
         /// <summary>
-        /// Gets plugin groups
-        /// </summary>
-        /// <returns>Plugins groups</returns>
-        IEnumerable<string> GetPluginGroups();
-
-        /// <summary>
         /// Gets plugins
         /// </summary>
         /// <typeparam name="T">The type of plugins to get.</typeparam>

@@ -1,12 +1,14 @@
 using System.Collections.Generic;
 using System.IO;
+using System.Web;
+using System.Web.Mvc;
 using System.Web.Routing;
 using PluginHub;
 using PluginHub.Plugins;
 using PluginHub.Services.Cms;
 using PluginHub.Services.Configuration;
 
-namespace PluginHub.Widgets.BaiduTJ
+namespace BaiduTJ
 {
     /// <summary>
     /// PLugin
@@ -42,7 +44,7 @@ namespace PluginHub.Widgets.BaiduTJ
         {
             actionName = "Configure";
             controllerName = "WidgetsBaiduTJ";
-            routeValues = new RouteValueDictionary { { "Namespaces", "PluginHub.Widgets.BaiduTJ.Controllers" }, { "area", "BaiduTJ" } };
+            routeValues = new RouteValueDictionary { { "Namespaces", "PluginHub.Widgets.BaiduTJ.Controllers" }, { "area", null } };
         }
 
         /// <summary>
@@ -73,6 +75,7 @@ namespace PluginHub.Widgets.BaiduTJ
             baiduTJSettings.TJCode = "Ä¬ÈÏ´úÂë";
             _settingService.SaveSetting<BaiduTJSettings>(baiduTJSettings);
 
+
             base.Install();
         }
 
@@ -84,6 +87,18 @@ namespace PluginHub.Widgets.BaiduTJ
 
 
             base.Uninstall();
+        }
+
+        public override void Open()
+        {
+            var route = RouteTable.Routes.MapRoute(
+                   name: "Widgets.BaiduTJ",
+                   url: "plugins/{controller}/{action}/{id}",
+                   defaults: new { controller = "WidgetsBaiduTJ", action = "Configure", id = UrlParameter.Optional }
+               );
+            route.DataTokens["area"] = "plugins";
+
+            base.Open();
         }
     }
 }

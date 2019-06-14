@@ -11,7 +11,6 @@ namespace PluginHub.Plugins
         public PluginDescriptor()
         {
             this.SupportedVersions = new List<string>();
-            this.LimitedToStores = new List<int>();
         }
 
 
@@ -44,11 +43,6 @@ namespace PluginHub.Plugins
         public virtual FileInfo OriginalAssemblyFile { get; internal set; }
 
         /// <summary>
-        /// Gets or sets the plugin group
-        /// </summary>
-        public virtual string Group { get; set; }
-
-        /// <summary>
         /// Gets or sets the friendly name
         /// </summary>
         public virtual string FriendlyName { get; set; }
@@ -77,11 +71,6 @@ namespace PluginHub.Plugins
         /// Gets or sets the display order
         /// </summary>
         public virtual int DisplayOrder { get; set; }
-
-        /// <summary>
-        /// Gets or sets the list of store identifiers in which this plugin is available. If empty, then this plugin is available in all stores
-        /// </summary>
-        public virtual IList<int> LimitedToStores { get; set; }
 
         /// <summary>
         /// Gets or sets the value indicating whether plugin is installed

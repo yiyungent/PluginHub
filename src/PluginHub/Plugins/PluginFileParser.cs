@@ -81,9 +81,6 @@ namespace PluginHub.Plugins
 
                 switch (key)
                 {
-                    case "Group":
-                        descriptor.Group = value;
-                        break;
                     case "FriendlyName":
                         descriptor.FriendlyName = value;
                         break;
@@ -114,29 +111,10 @@ namespace PluginHub.Plugins
                     case "FileName":
                         descriptor.PluginFileName = value;
                         break;
-                    case "LimitedToStores":
-                        {
-                            //parse list of store IDs
-                            foreach (var str1 in value.Split(new [] {','}, StringSplitOptions.RemoveEmptyEntries)
-                                                      .Select(x => x.Trim()))
-                            {
-                                int storeId;
-                                if (int.TryParse(str1, out storeId))
-                                {
-                                    descriptor.LimitedToStores.Add(storeId);
-                                }
-                            }
-                        }
-                        break;
                     default:
                         break;
                 }
             }
-
-            //nopCommerce 2.00 didn't have 'SupportedVersions' parameter
-            //so let's set it to "2.00"
-            if (descriptor.SupportedVersions.Count == 0)
-                descriptor.SupportedVersions.Add("2.00");
 
             return descriptor;
         }
@@ -154,7 +132,6 @@ namespace PluginHub.Plugins
                 throw new Exception(string.Format("Description file for {0} plugin does not exist. {1}", plugin.SystemName, filePath));
 
             var keyValues = new List<KeyValuePair<string, string>>();
-            keyValues.Add(new KeyValuePair<string, string>("Group", plugin.Group));
             keyValues.Add(new KeyValuePair<string, string>("FriendlyName", plugin.FriendlyName));
             keyValues.Add(new KeyValuePair<string, string>("SystemName", plugin.SystemName));
             keyValues.Add(new KeyValuePair<string, string>("Version", plugin.Version));
@@ -162,17 +139,6 @@ namespace PluginHub.Plugins
             keyValues.Add(new KeyValuePair<string, string>("Author", plugin.Author));
             keyValues.Add(new KeyValuePair<string, string>("DisplayOrder", plugin.DisplayOrder.ToString()));
             keyValues.Add(new KeyValuePair<string, string>("FileName", plugin.PluginFileName));
-            if (plugin.LimitedToStores.Count > 0)
-            {
-                var storeList = "";
-                for (int i = 0; i < plugin.LimitedToStores.Count; i++)
-                {
-                    storeList += plugin.LimitedToStores[i];
-                    if (i != plugin.LimitedToStores.Count - 1)
-                        storeList += ",";
-                }
-                keyValues.Add(new KeyValuePair<string, string>("LimitedToStores", storeList));
-            }
 
             var sb = new StringBuilder();
             for (int i = 0; i < keyValues.Count; i++)

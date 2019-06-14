@@ -1,12 +1,12 @@
 ﻿using PluginHub.Services.Configuration;
-using PluginHub.Widgets.BaiduTJ.Models;
+using BaiduTJ.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace PluginHub.Widgets.BaiduTJ.Controllers
+namespace BaiduTJ.Controllers
 {
     public class WidgetsBaiduTJController : Controller
     {
@@ -23,7 +23,7 @@ namespace PluginHub.Widgets.BaiduTJ.Controllers
             BaiduTJSettings baiduTJSettings = _settingService.LoadSetting<BaiduTJSettings>();
             ViewBag.TJCode = baiduTJSettings.TJCode;
 
-            return View("~/Plugins/Widgets.BaiduTJ/Views/WidgetsBaiduTJ/PublicInfo.cshtml");
+            return View("~/Plugins/BaiduTJ/Views/WidgetsBaiduTJ/PublicInfo.cshtml");
         }
 
         [HttpGet]
@@ -35,7 +35,7 @@ namespace PluginHub.Widgets.BaiduTJ.Controllers
             ConfigurationViewModel viewModel = new ConfigurationViewModel();
             viewModel.TJCode = baiduTJSettings.TJCode;
 
-            return View("~/Plugins/Widgets.BaiduTJ/Views/WidgetsBaiduTJ/Configure.cshtml", viewModel);
+            return View("~/Plugins/BaiduTJ/Views/WidgetsBaiduTJ/Configure.cshtml", viewModel);
         }
 
         [HttpPost]
@@ -53,7 +53,7 @@ namespace PluginHub.Widgets.BaiduTJ.Controllers
                 ModelState.AddModelError("BaiduTJ.Configure", "保存失败");
             }
 
-            return View("~/Plugins/Widgets.BaiduTJ/Views/WidgetsBaiduTJ/Configure.cshtml");
+            return View("~/Plugins/BaiduTJ/Views/WidgetsBaiduTJ/Configure.cshtml");
         }
     }
 }

@@ -1,0 +1,7 @@
+﻿FriendlyName: 百度统计
+SystemName: BaiduTJ
+Version: 1.06
+SupportedVersions: 0.1.0
+Author: yiyungent
+DisplayOrder: 1
+FileName: BaiduTJ.dll

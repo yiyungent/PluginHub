@@ -60,6 +60,7 @@ namespace AspNetMvc5Demo.Controllers
         }
         #endregion
 
+        #region 安装
         public ActionResult Install(string systemName)
         {
             try
@@ -85,7 +86,9 @@ namespace AspNetMvc5Demo.Controllers
 
             return RedirectToAction("Index");
         }
+        #endregion
 
+        #region 卸载
         public ActionResult Uninstall(string systemName)
         {
             try
@@ -111,13 +114,16 @@ namespace AspNetMvc5Demo.Controllers
 
             return RedirectToAction("Index");
         }
+        #endregion
 
+        #region 重新加载
         public ActionResult ReloadList()
         {
             //restart application
             _webHelper.RestartAppDomain();
             return RedirectToAction("Index");
-        }
+        } 
+        #endregion
 
         #region 配置
         [HttpGet]

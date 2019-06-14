@@ -1,7 +1,7 @@
 ﻿
 using PluginHub.Configuration;
 
-namespace PluginHub.Widgets.BaiduTJ
+namespace BaiduTJ
 {
     public class BaiduTJSettings : ISettings
     {
