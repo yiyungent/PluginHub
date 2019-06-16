@@ -43,35 +43,12 @@ namespace AspNetMvc5Demo.Controllers
         [ChildActionOnly]
         public ActionResult WidgetsByZone(string widgetZone, object additionalData = null)
         {
-            var cacheKey = string.Format("Nop.pres.widget-{0}-{1}", 1, widgetZone);
-            //var cacheModel = _cacheManager.Get(cacheKey, () =>
-            //{
-            //    //model
-            //    var model = new List<RenderWidgetModel>();
-
-            //    var widgets = _widgetService.LoadActiveWidgetsByWidgetZone(widgetZone);
-            //    foreach (var widget in widgets)
-            //    {
-            //        var widgetModel = new RenderWidgetModel();
-
-            //        string actionName;
-            //        string controllerName;
-            //        RouteValueDictionary routeValues;
-            //        widget.GetDisplayWidgetRoute(widgetZone, out actionName, out controllerName, out routeValues);
-            //        widgetModel.ActionName = actionName;
-            //        widgetModel.ControllerName = controllerName;
-            //        widgetModel.RouteValues = routeValues;
-
-            //        model.Add(widgetModel);
-            //    }
-            //    return model;
-            //});
-            var model = new List<RenderWidgetModel>();
+            List<RenderWidgetModel> viewModel = new List<RenderWidgetModel>();
 
             var widgets = _widgetService.LoadActiveWidgetsByWidgetZone(widgetZone);
             foreach (var widget in widgets)
             {
-                var widgetModel = new RenderWidgetModel();
+                RenderWidgetModel widgetModel = new RenderWidgetModel();
 
                 string actionName;
                 string controllerName;
@@ -81,35 +58,22 @@ namespace AspNetMvc5Demo.Controllers
                 widgetModel.ControllerName = controllerName;
                 widgetModel.RouteValues = routeValues;
 
-                model.Add(widgetModel);
+                //"RouteValues" property of widget models depends on "additionalData".
+                if (additionalData != null)
+                {
+                    if (widgetModel.RouteValues == null)
+                        widgetModel.RouteValues = new RouteValueDictionary();
+                    widgetModel.RouteValues.Add("additionalData", additionalData);
+                }
+
+                viewModel.Add(widgetModel);
             }
 
             //no data?
-            if (model.Count == 0)
+            if (viewModel.Count == 0)
                 return Content("");
 
-            //"RouteValues" property of widget models depends on "additionalData".
-            //We need to clone the cached model before modifications (the updated one should not be cached)
-            var clonedModel = new List<RenderWidgetModel>();
-            foreach (var widgetModel in model)
-            {
-                var clonedWidgetModel = new RenderWidgetModel();
-                clonedWidgetModel.ActionName = widgetModel.ActionName;
-                clonedWidgetModel.ControllerName = widgetModel.ControllerName;
-                if (widgetModel.RouteValues != null)
-                    clonedWidgetModel.RouteValues = new RouteValueDictionary(widgetModel.RouteValues);
-
-                if (additionalData != null)
-                {
-                    if (clonedWidgetModel.RouteValues == null)
-                        clonedWidgetModel.RouteValues = new RouteValueDictionary();
-                    clonedWidgetModel.RouteValues.Add("additionalData", additionalData);
-                }
-
-                clonedModel.Add(clonedWidgetModel);
-            }
-
-            return PartialView(clonedModel);
+            return PartialView(viewModel);
         }
 
         #endregion
