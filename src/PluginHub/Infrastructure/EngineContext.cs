@@ -13,6 +13,7 @@ namespace PluginHub.Infrastructure
         #region Utilities
 
         /// <summary>
+        /// 创建引擎实例，若配置了自定义引擎，则反射创建自定义引擎实例，否则创建默认引擎<see cref="PluginHubEngine"/>实例
         /// Creates a factory instance and adds a http application injecting facility.
         /// </summary>
         /// <param name="config">Config</param>
@@ -43,8 +44,10 @@ namespace PluginHub.Infrastructure
         [MethodImpl(MethodImplOptions.Synchronized)]
         public static IEngine Initialize(bool forceRecreate)
         {
+            // 若存储的引擎单例为 null 或 强制重新创建
             if (Singleton<IEngine>.Instance == null || forceRecreate)
             {
+                // 通过 ConfigurationManager.GetSection("NopConfig")  获取的配置实例 除非 web.config 更新，否则单例，始终返回的同一实例
                 var config = ConfigurationManager.GetSection("NopConfig") as PluginHubConfig;
                 Singleton<IEngine>.Instance = CreateEngineInstance(config);
                 Singleton<IEngine>.Instance.Initialize(config);
@@ -53,6 +56,7 @@ namespace PluginHub.Infrastructure
         }
 
         /// <summary>
+        /// 替换当前引擎单例 为 自定义引擎
         /// Sets the static engine instance to the supplied engine. Use this method to supply your own engine implementation.
         /// </summary>
         /// <param name="engine">The engine to use.</param>

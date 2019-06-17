@@ -125,6 +125,10 @@
       <Project>{747166fc-5860-428b-82c7-aaa6878548c0}</Project>
       <Name>PluginHub.Services</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\src\PluginHub.Web\PluginHub.Web.csproj">
+      <Project>{3fa60cc1-f10c-41d9-a5b1-ba5bab31e553}</Project>
+      <Name>PluginHub.Web</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\PluginHub\PluginHub.csproj">
       <Project>{e4f8a6dd-8fb0-45a5-a921-a6a1c5b667f9}</Project>
       <Name>PluginHub</Name>

@@ -1,1 +1,1 @@
-﻿TJCode:<script>alert("test")</script>
+﻿TJCode:默认代码

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AspNetMvc5Demo.App_Start;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,11 +14,20 @@ namespace AspNetMvc5Demo
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            //var route = RouteTable.Routes.MapRoute(
+            //      name: "plugins",
+            //      url: "plugin-{pluginName}/{controller}/{action}/{id}",
+            //      defaults: new { controller = "WidgetsBaiduTJ", action = "Configure", id = UrlParameter.Optional },
+            //      constraints: new { pluginName = new PluginRouteConstraint() }
+            //  );
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
+
         }
     }
 }

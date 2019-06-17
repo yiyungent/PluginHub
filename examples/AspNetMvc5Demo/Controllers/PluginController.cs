@@ -1,6 +1,7 @@
 ﻿using AspNetMvc5Demo.Models.PluginVM;
 using PluginHub;
 using PluginHub.Domain.Cms;
+using PluginHub.Infrastructure;
 using PluginHub.Plugins;
 using PluginHub.Services.Cms;
 using System;
@@ -24,10 +25,17 @@ namespace AspNetMvc5Demo.Controllers
 
         #region Constructors
 
-        public PluginController(IPluginFinder pluginFinder, IWebHelper webHelper)
+        //public PluginController(IPluginFinder pluginFinder, IWebHelper webHelper)
+        //{
+        //    this._pluginFinder = pluginFinder;
+        //    this._webHelper = webHelper;
+        //    this._widgetSettings = new WidgetSettings();
+        //}
+
+        public PluginController()
         {
-            this._pluginFinder = pluginFinder;
-            this._webHelper = webHelper;
+            this._pluginFinder = EngineContext.Current.Resolve<IPluginFinder>();
+            this._webHelper = EngineContext.Current.Resolve<IWebHelper>();
             this._widgetSettings = new WidgetSettings();
         }
 
@@ -122,7 +130,7 @@ namespace AspNetMvc5Demo.Controllers
             //restart application
             _webHelper.RestartAppDomain();
             return RedirectToAction("Index");
-        } 
+        }
         #endregion
 
         #region 配置
@@ -150,7 +158,7 @@ namespace AspNetMvc5Demo.Controllers
             }
             viewModel.ConfigurationActionName = actionName;
             viewModel.ConfigurationControllerName = controllerName;
-            viewModel.ConfigurationRouteValues = routeValues; 
+            viewModel.ConfigurationRouteValues = routeValues;
             #endregion
 
             return View(viewModel);

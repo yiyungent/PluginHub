@@ -47,14 +47,18 @@ namespace PluginHub.Infrastructure
             set { assemblyNames = value; }
         }
 
-        /// <summary>Gets the pattern for dlls that we know don't need to be investigated.</summary>
+        /// <summary>
+        /// 黑名单：不需要（再次）加载的程序集
+        /// Gets the pattern for dlls that we know don't need to be investigated.</summary>
         public string AssemblySkipLoadingPattern
         {
             get { return assemblySkipLoadingPattern; }
             set { assemblySkipLoadingPattern = value; }
         }
 
-        /// <summary>Gets or sets the pattern for dll that will be investigated. For ease of use this defaults to match all but to increase performance you might want to configure a pattern that includes assemblies and your own.</summary>
+        /// <summary>
+        /// 白名单，需要加载的程序集
+        /// Gets or sets the pattern for dll that will be investigated. For ease of use this defaults to match all but to increase performance you might want to configure a pattern that includes assemblies and your own.</summary>
         /// <remarks>If you change this so that Nop assemblies arn't investigated (e.g. by not including something like "^Nop|..." you may break core functionality.</remarks>
         public string AssemblyRestrictToLoadingPattern
         {
@@ -81,13 +85,22 @@ namespace PluginHub.Infrastructure
             return FindClassesOfType(typeof (T), assemblies, onlyConcreteClasses);
         }
 
+        /// <summary>
+        /// 在指定的程序集列表中 找类型（能够实现指定类型<see cref="assignTypeFrom"/>或继承指定类型的类）
+        /// </summary>
+        /// <param name="assignTypeFrom"></param>
+        /// <param name="assemblies"></param>
+        /// <param name="onlyConcreteClasses"></param>
+        /// <returns></returns>
         public IEnumerable<Type> FindClassesOfType(Type assignTypeFrom, IEnumerable<Assembly> assemblies, bool onlyConcreteClasses = true)
         {
             var result = new List<Type>();
             try
             {
+                // 遍历程序集列表
                 foreach (var a in assemblies)
                 {
+                    //  该程序集 内 所有的 类型
                     Type[] types = null;
                     try
                     {
@@ -103,12 +116,18 @@ namespace PluginHub.Infrastructure
                     }
                     if (types != null)
                     {
+                        // 遍历当前程序集中的 所有类型
                         foreach (var t in types)
                         {
+                            // 1.若当前类型的实例可以 替换 指定类型的实例（里氏替换） / 实现接口
+                            // 2.指定类型是一个普通类 => true 且 当前类型 继承于 指定类型 => true
+                            // 1,2 都 满足才满足
                             if (assignTypeFrom.IsAssignableFrom(t) || (assignTypeFrom.IsGenericTypeDefinition && DoesTypeImplementOpenGeneric(t, assignTypeFrom)))
                             {
+                                // 当前类型非接口
                                 if (!t.IsInterface)
                                 {
+                                    // 是否只要实现类（非抽象）
                                     if (onlyConcreteClasses)
                                     {
                                         if (t.IsClass && !t.IsAbstract)
@@ -140,7 +159,10 @@ namespace PluginHub.Infrastructure
             return result;
         }
 
-        /// <summary>Gets the assemblies related to the current implementation.</summary>
+        /// <summary>
+        /// 返回 所有需要加载的程序集
+        /// Gets the assemblies related to the current implementation.
+        /// </summary>
         /// <returns>A list of assemblies that should be loaded by the Nop factory.</returns>
         public virtual IList<Assembly> GetAssemblies()
         {
@@ -159,6 +181,7 @@ namespace PluginHub.Infrastructure
         #region Utilities
 
         /// <summary>
+        /// 将 app已加载程序集列表 中所有 不在黑名单 且 在白名单的 程序集 添加到 实参
         /// Iterates all assemblies in the AppDomain and if it's name matches the configured patterns add it to our list.
         /// </summary>
         /// <param name="addedAssemblyNames"></param>
@@ -179,6 +202,7 @@ namespace PluginHub.Infrastructure
         }
 
         /// <summary>
+        /// 将 <see cref="AssemblyNames"/> 中的 所有程序集 添加到 实参
         /// Adds specificly configured assemblies.
         /// </summary>
         /// <param name="addedAssemblyNames"></param>
@@ -197,6 +221,7 @@ namespace PluginHub.Infrastructure
         }
 
         /// <summary>
+        /// 检查一个程序集 是否需要被加载,需要返回True
         /// Check if a dll is one of the shipped dlls that we know don't need to be investigated.
         /// </summary>
         /// <param name="assemblyFullName">
@@ -207,12 +232,15 @@ namespace PluginHub.Infrastructure
         /// </returns>
         public virtual bool Matches(string assemblyFullName)
         {
+            // 不在黑名单内 且 在白名单内的 程序集
             return !Matches(assemblyFullName, AssemblySkipLoadingPattern)
                    && Matches(assemblyFullName, AssemblyRestrictToLoadingPattern);
         }
 
         /// <summary>
         /// Check if a dll is one of the shipped dlls that we know don't need to be investigated.
+        /// 检查一个程序集 是否 需要被 加载，不需要 返回 True
+        /// 满足 pattern 则 不需要被加载
         /// </summary>
         /// <param name="assemblyFullName">
         /// The assembly name to match.
@@ -229,6 +257,7 @@ namespace PluginHub.Infrastructure
         }
 
         /// <summary>
+        /// (指定目录)确保将需要加载的程序集 加载 到 App
         /// Makes sure matching assemblies in the supplied folder are loaded in the app domain.
         /// </summary>
         /// <param name="directoryPath">
@@ -236,6 +265,7 @@ namespace PluginHub.Infrastructure
         /// </param>
         protected virtual void LoadMatchingAssemblies(string directoryPath)
         {
+            // 当前 App 内 所有 已加载的程序集
             var loadedAssemblyNames = new List<string>();
             foreach (Assembly a in GetAssemblies())
             {
@@ -246,14 +276,16 @@ namespace PluginHub.Infrastructure
             {
                 return;
             }
-
+            // 该目录下所有 dll
             foreach (string dllPath in Directory.GetFiles(directoryPath, "*.dll"))
             {
                 try
                 {
                     var an = AssemblyName.GetAssemblyName(dllPath);
+                    // 该程序集 需要被加载 且 当前已加载程序集中不存在它
                     if (Matches(an.FullName) && !loadedAssemblyNames.Contains(an.FullName))
                     {
+                        // 将它加载到 App
                         App.Load(an);
                     }
 
@@ -273,6 +305,7 @@ namespace PluginHub.Infrastructure
 
         /// <summary>
         /// Does type implement generic?
+        /// type 类型 是否 继承 openGeneric 类型（非实现接口）
         /// </summary>
         /// <param name="type"></param>
         /// <param name="openGeneric"></param>
@@ -282,11 +315,14 @@ namespace PluginHub.Infrastructure
             try
             {
                 var genericTypeDefinition = openGeneric.GetGenericTypeDefinition();
+                // type 类型 继承的类 和 实现的接口
                 foreach (var implementedInterface in type.FindInterfaces((objType, objCriteria) => true, null))
                 {
+                    // 实现的 不是 普通类 跳过
                     if (!implementedInterface.IsGenericType)
                         continue;
-
+                    // 此类型的实例 是否 可以被 分配给 当前 openGeneric 类型
+                    // type 类型 是否 继承 openGeneric 类型
                     var isMatch = genericTypeDefinition.IsAssignableFrom(implementedInterface.GetGenericTypeDefinition());
                     return isMatch;
                 }

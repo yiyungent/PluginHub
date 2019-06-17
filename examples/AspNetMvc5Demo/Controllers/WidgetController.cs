@@ -7,6 +7,7 @@ using PluginHub.Services.Cms;
 using AspNetMvc5Demo.Models.Cms;
 using PluginHub.Domain.Cms;
 using PluginHub.Plugins;
+using PluginHub.Infrastructure;
 
 namespace AspNetMvc5Demo.Controllers
 {
@@ -22,19 +23,19 @@ namespace AspNetMvc5Demo.Controllers
 
         #region Constructors
 
-        //public WidgetController()
-        //{
-        //    this._widgetService = new WidgetService(new PluginFinder(), new WidgetSettings());
-        //    //this._storeContext = storeContext;
-        //    //this._cacheManager = new PerRequestCacheManager(HttpContext);
-        //}
-
-        public WidgetController(IWidgetService widgetService)
+        public WidgetController()
         {
-            this._widgetService = widgetService;
+            this._widgetService = EngineContext.Current.Resolve<IWidgetService>();
             //this._storeContext = storeContext;
             //this._cacheManager = new PerRequestCacheManager(HttpContext);
         }
+
+        //public WidgetController(IWidgetService widgetService)
+        //{
+        //    this._widgetService = widgetService;
+        //    //this._storeContext = storeContext;
+        //    //this._cacheManager = new PerRequestCacheManager(HttpContext);
+        //}
 
         #endregion
 

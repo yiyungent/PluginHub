@@ -32,6 +32,8 @@ namespace PluginHub.Infrastructure
         #region Properties
 
         /// <summary>
+        /// app 被重新加载后 插件程序集需要被加载
+        /// 是否确保被加载
         /// Gets or sets wether assemblies in the bin folder of the web application should be specificly checked for beeing loaded on application load. This is need in situations where plugins need to be loaded in the AppDomain after the application been reloaded.
         /// </summary>
         public bool EnsureBinFolderAssembliesLoaded
@@ -62,6 +64,7 @@ namespace PluginHub.Infrastructure
 
         public override IList<Assembly> GetAssemblies()
         {
+            // 确保bin 目录被加载 且 bin目录程序集未被加载
             if (this.EnsureBinFolderAssembliesLoaded && !_binFolderAssembliesLoaded)
             {
                 _binFolderAssembliesLoaded = true;

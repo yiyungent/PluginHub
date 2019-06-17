@@ -1,6 +1,7 @@
 ﻿using AspNetMvc5Demo;
 using PluginHub.Infrastructure;
 using PluginHub.Mvc5;
+using PluginHub.Web.Mvc.Routes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,11 +15,21 @@ namespace AspNetMvc5Demo
     {
         protected void Application_Start()
         {
-            AreaRegistration.RegisterAllAreas();
-            RouteConfig.RegisterRoutes(RouteTable.Routes);
+            RegisterRoutes(RouteTable.Routes);
 
             //initialize engine context
             EngineContext.Initialize(false);
+        }
+
+        public static void RegisterRoutes(RouteCollection routes)
+        {
+            AreaRegistration.RegisterAllAreas();
+
+            //register custom routes (plugins, etc)
+            var routePublisher = EngineContext.Current.Resolve<IRoutePublisher>();
+            routePublisher.RegisterRoutes(routes);
+
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
         }
     }
 }

@@ -9,6 +9,7 @@ using PluginHub.Infrastructure.DependencyManagement;
 using PluginHub.Plugins;
 using PluginHub.Services.Cms;
 using PluginHub.Services.Configuration;
+using PluginHub.Web.Mvc.Routes;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -59,6 +60,9 @@ namespace PluginHub
             builder.RegisterType<WidgetService>().As<IWidgetService>().InstancePerLifetimeScope();
 
             builder.RegisterType<WidgetSettings>().As<WidgetSettings>().InstancePerLifetimeScope();
+
+            // route
+            builder.RegisterType<RoutePublisher>().As<IRoutePublisher>().InstancePerLifetimeScope();
 
 
             // custom services imply

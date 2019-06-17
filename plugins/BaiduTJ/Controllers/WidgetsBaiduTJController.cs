@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PluginHub.Infrastructure;
 
 namespace BaiduTJ.Controllers
 {
@@ -12,9 +13,14 @@ namespace BaiduTJ.Controllers
     {
         private readonly ISettingService _settingService;
 
-        public WidgetsBaiduTJController(ISettingService settingService)
+        //public WidgetsBaiduTJController(ISettingService settingService)
+        //{
+        //    this._settingService = settingService;
+        //}
+
+        public WidgetsBaiduTJController()
         {
-            this._settingService = settingService;
+            this._settingService = EngineContext.Current.Resolve<ISettingService>();
         }
 
         [ChildActionOnly]

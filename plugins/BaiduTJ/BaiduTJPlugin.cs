@@ -4,25 +4,35 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using PluginHub;
+using PluginHub.Infrastructure;
 using PluginHub.Plugins;
 using PluginHub.Services.Cms;
 using PluginHub.Services.Configuration;
+using PluginHub.Web.Mvc.Routes;
 
 namespace BaiduTJ
 {
     /// <summary>
     /// PLugin
     /// </summary>
-    public class BaiduTJPlugin : BasePlugin, IWidgetPlugin
+    public class BaiduTJPlugin : BasePlugin, IWidgetPlugin, IRouteProvider
     {
         private readonly ISettingService _settingService;
         private readonly IWebHelper _webHelper;
 
-        public BaiduTJPlugin(ISettingService settingService,
-             IWebHelper webHelper)
+        public int Priority { get { return 1; } }
+
+        //public BaiduTJPlugin(ISettingService settingService,
+        //     IWebHelper webHelper)
+        //{
+        //    this._settingService = settingService;
+        //    this._webHelper = webHelper;
+        //}
+
+        public BaiduTJPlugin()
         {
-            this._settingService = settingService;
-            this._webHelper = webHelper;
+            this._settingService = EngineContext.Current.Resolve<ISettingService>();
+            this._webHelper = EngineContext.Current.Resolve<IWebHelper>();
         }
 
         /// <summary>
@@ -75,6 +85,7 @@ namespace BaiduTJ
             baiduTJSettings.TJCode = "Ä¬ÈÏ´úÂë";
             _settingService.SaveSetting<BaiduTJSettings>(baiduTJSettings);
 
+            //Open();
 
             base.Install();
         }
@@ -99,6 +110,16 @@ namespace BaiduTJ
             route.DataTokens["area"] = "plugins";
 
             base.Open();
+        }
+
+        public void RegisterRoutes(RouteCollection routes)
+        {
+            routes.MapRoute(
+                   name: "Widgets.BaiduTJ",
+                   url: "plugin-BaiduTJ/{controller}/{action}/{id}",
+                   defaults: new { controller = "WidgetsBaiduTJ", action = "Configure", id = UrlParameter.Optional },
+                   namespaces: new string[] { "BaiduTJ.Controllers" }
+               );
         }
     }
 }

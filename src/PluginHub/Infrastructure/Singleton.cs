@@ -75,7 +75,9 @@ namespace PluginHub.Infrastructure
 
         static readonly IDictionary<Type, object> allSingletons;
 
-        /// <summary>Dictionary of type to singleton instances.</summary>
+        /// <summary>
+        /// 所有单例键值集合 <类型，实例>
+        /// Dictionary of type to singleton instances.</summary>
         public static IDictionary<Type, object> AllSingletons
         {
             get { return allSingletons; }

@@ -73,9 +73,9 @@ namespace PluginHub.Infrastructure
 
 
             this._containerManager = new ContainerManager(container);
-            
+
             //set dependency resolver
-            DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
+            //DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
         }
 
         #endregion
