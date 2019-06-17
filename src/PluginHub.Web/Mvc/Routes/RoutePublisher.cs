@@ -61,8 +61,10 @@ namespace PluginHub.Web.Mvc.Routes
                 var plugin = FindPlugin(providerType);
                 if (plugin != null && !plugin.Installed)
                     continue;
-
+                // 旧方法：无法实现 实现 IRouteProvider 的类 采用构造函数注入（必须有无参构造函数，否则无法创建 IRouteProvider）
+                // 但只能使用此旧方法，因为插件主类没有被注册在IoC容器
                 var provider = Activator.CreateInstance(providerType) as IRouteProvider;
+                //var provider = EngineContext.Current.Resolve(providerType) as IRouteProvider;
                 routeProviders.Add(provider);
             }
             routeProviders = routeProviders.OrderByDescending(rp => rp.Priority).ToList();
